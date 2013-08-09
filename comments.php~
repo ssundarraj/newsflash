@@ -1,0 +1,21 @@
+<?php
+			session_start();
+			$response="";
+			$con=mysqli_connect("localhost","root","pass","newsreader");
+			$sql="SELECT * FROM thehindu WHERE link='".$_SESSION['lnk']."'";
+			$result=mysqli_query($con, $sql);
+			$row=mysqli_fetch_array($result);
+			$_SESSION['title']=$row['title'];
+			$_SESSION['sno']="thehindu".$row['sno'];
+
+			$sql="SELECT * FROM $_SESSION[sno]";
+			$result=mysqli_query($con, $sql);
+			while($row=mysqli_fetch_array($result)){
+				$response=$response.$row['name'].": </br>".$row['comment']."</br></br>";
+			}		
+			if(isset($_POST['uname'])){
+				$response=$response."</br>Comment successfully posted!";			
+			}
+			mysqli_close($con);
+			echo $response;
+?>

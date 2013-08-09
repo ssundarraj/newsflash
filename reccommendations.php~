@@ -1,0 +1,10 @@
+<?php
+	session_start();
+	if(isset($_SESSION['useronline'])){
+		$con=mysqli_connect("localhost","root","pass","newsreader");
+		$sql="SELECT * FROM users WHERE username='".$_SESSION['useronline']."'";
+	}
+	else {
+		$response="Please login to get . 
+	
+?>

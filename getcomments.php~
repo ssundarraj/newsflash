@@ -1,0 +1,18 @@
+<?php
+			session_start();
+			$response="";
+			$con=mysqli_connect("localhost","root","pass","newsreader");
+			$sql="SELECT * FROM ".$_SESSION['source']." WHERE link='".$_SESSION['lnk']."'";
+			$result=mysqli_query($con, $sql);
+			$row=mysqli_fetch_array($result);
+			$_SESSION['title']=$row['title'];
+			$_SESSION['sno']=$_SESSION['source'].$row['sno'];
+
+			$sql="SELECT * FROM $_SESSION[sno] ORDER BY cno DESC";
+			$result=mysqli_query($con, $sql);
+			while($row=mysqli_fetch_array($result)){
+				$response=$response."<p id='comm'>".$row['name'].": </br>".$row['comment']."</p>";
+			}		
+			mysqli_close($con);
+			echo $response;
+?>

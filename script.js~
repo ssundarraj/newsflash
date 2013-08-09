@@ -1,0 +1,20 @@
+function linker(obj){
+	var lnk=obj.id;
+	var x=document.getElementsByName('articleid')
+	x[0].value=lnk;
+	x=document.getElementById('redirect_form');
+	x.submit();
+}
+
+function commenting(){
+	console.log("Comment function")
+}
+
+window.onload = function(){
+	var a=document.getElementsByClassName('articlecell');
+	for(var i=0; i<a.length; i++){
+		a[i].onclick=function () {linker(this)}
+	}
+	var b=document.getElementById('comment_button');
+	b.onclick=function (){console.log("a")};
+}
